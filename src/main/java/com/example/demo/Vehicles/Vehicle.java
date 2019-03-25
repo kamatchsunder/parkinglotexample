@@ -5,20 +5,7 @@ import com.example.demo.Tickets.Ticket;
 
 public abstract class Vehicle {
 
-    public String getNumber() {
-
-        return number;
-    }
-
-
     private String number;
-
-
-    public VehicleType getVehicleType() {
-
-        return vehicleType;
-    }
-
 
     private VehicleType vehicleType;
     private Ticket ticket;
@@ -50,6 +37,16 @@ public abstract class Vehicle {
 
             super(VehicleType.TWO_WHEELER);
         }
+    }
+
+    public String getNumber() {
+
+        return number;
+    }
+
+    public VehicleType getVehicleType() {
+
+        return vehicleType;
     }
 
 }

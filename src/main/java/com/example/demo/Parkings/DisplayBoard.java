@@ -5,7 +5,6 @@ import java.util.List;
 
 public class DisplayBoard {
 
-
     private int id;
 
     private List<ParkingSpot.CarParkingSpot> carParkingSpotList;
@@ -13,8 +12,7 @@ public class DisplayBoard {
     private List<ParkingSpot.TwoWheelerParkingSpot> twoWHeelerSpotList;
 
 
-
-    public void display(){
+    public void display() {
 
         System.out.println("display");
 

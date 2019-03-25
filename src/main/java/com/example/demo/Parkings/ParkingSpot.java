@@ -5,33 +5,33 @@ import com.example.demo.Vehicles.Vehicle;
 
 public abstract class ParkingSpot {
 
-    public int getNumber() {
-
-        return number;
-    }
-
-
     private int number;
     private Vehicle vehicle;
-    private boolean isFree=true;
+    private boolean isFree = true;
 
     private ParkingSpotType parkingSpotType;
 
-    public ParkingSpot(ParkingSpotType parkingSpotType){
+
+    public ParkingSpot(ParkingSpotType parkingSpotType) {
+
         this.parkingSpotType = parkingSpotType;
     }
 
-    public void assignVehicle(Vehicle vehicle){
+
+    public void assignVehicle(Vehicle vehicle) {
 
         this.vehicle = vehicle;
         isFree = false;
     }
 
-    public boolean removeVehicle(){
+
+    public boolean removeVehicle() {
+
         this.vehicle = null;
         isFree = true;
         return isFree = false;
     }
+
 
     public boolean isFree() {
 
@@ -45,7 +45,7 @@ public abstract class ParkingSpot {
     }
 
 
-    public class CarParkingSpot extends ParkingSpot {
+    public static class CarParkingSpot extends ParkingSpot {
 
         public CarParkingSpot(ParkingSpotType parkingSpotType) {
 
@@ -54,11 +54,18 @@ public abstract class ParkingSpot {
     }
 
 
-    public  class TwoWheelerParkingSpot extends  ParkingSpot {
+    public static class TwoWheelerParkingSpot extends ParkingSpot {
 
         public TwoWheelerParkingSpot(ParkingSpotType parkingSpotType) {
 
             super(ParkingSpotType.TWO_WHEELER_PARKING);
         }
     }
+
+
+    public int getNumber() {
+
+        return number;
+    }
+
 }
