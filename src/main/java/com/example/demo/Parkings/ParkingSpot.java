@@ -6,6 +6,14 @@ import com.example.demo.Vehicles.Vehicle;
 public abstract class ParkingSpot {
 
     private int number;
+
+
+    public Vehicle getVehicle() {
+
+        return vehicle;
+    }
+
+
     private Vehicle vehicle;
     private boolean isFree = true;
 

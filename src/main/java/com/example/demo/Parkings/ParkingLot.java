@@ -51,17 +51,39 @@ public class ParkingLot {
     }
 
 
+    public double payTicketAmount(Vehicle vehicle){
+
+        for(int number : parkingFloorHashMap.keySet()){
+            ParkingFloor parkingFloor = parkingFloorHashMap.get(number);
+
+            ParkingSpot parkingSpot = parkingFloor.getParkingSpot(vehicle);
+            double amount = vehicle.getTicket().getPayAmount();
+            parkingFloor.removeVehicleFromSpot(vehicle,parkingSpot);
+            return amount;
+        }
+
+        return 0.0;
+    }
+
+
     private void assignSpotToVehicle(Vehicle vehicle) {
 
-        parkingFloorHashMap.forEach((key, value) -> {
 
+        for(int number : parkingFloorHashMap.keySet()){
+            ParkingFloor parkingFloor = parkingFloorHashMap.get(number);
             if (vehicle.getVehicleType() == VehicleType.CAR) {
-                value.addParkingSpot(new ParkingSpot.CarParkingSpot(ParkingSpotType.CAR_PARKING));
+                ParkingSpot parkingSpot = new ParkingSpot.CarParkingSpot(ParkingSpotType.CAR_PARKING);
+                parkingFloor.assignVehicleToSpot(vehicle,parkingSpot);
+                parkingFloor.addParkingSpot(parkingSpot);
+                break;
             }
             else if (vehicle.getVehicleType() == VehicleType.TWO_WHEELER) {
-                value.addParkingSpot(new ParkingSpot.TwoWheelerParkingSpot(ParkingSpotType.TWO_WHEELER_PARKING));
+                ParkingSpot parkingSpot = new ParkingSpot.TwoWheelerParkingSpot(ParkingSpotType.TWO_WHEELER_PARKING);
+                parkingFloor.assignVehicleToSpot(vehicle,parkingSpot);
+                parkingFloor.addParkingSpot(parkingSpot);
+                break;
             }
-        });
+        }
     }
 
 }

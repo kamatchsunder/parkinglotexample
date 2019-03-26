@@ -2,17 +2,28 @@ package com.example.demo.Vehicles;
 
 import com.example.demo.Tickets.Ticket;
 
+import java.util.Random;
+
 
 public abstract class Vehicle {
 
     private String number;
 
     private VehicleType vehicleType;
+
+
+    public Ticket getTicket() {
+
+        return ticket;
+    }
+
+
     private Ticket ticket;
 
 
-    public Vehicle(VehicleType vehicleType){
+    public Vehicle(String number,VehicleType vehicleType){
 
+        this.number = number;
         this.vehicleType = vehicleType;
     }
 
@@ -23,11 +34,11 @@ public abstract class Vehicle {
     }
 
 
-    public class Car extends Vehicle {
+    public static class Car extends Vehicle {
 
         public Car(VehicleType vehicleType) {
 
-            super(VehicleType.CAR);
+            super(Math.random()+"",VehicleType.CAR);
         }
     }
 
@@ -35,7 +46,7 @@ public abstract class Vehicle {
 
         public TwoWheeler(VehicleType vehicleType) {
 
-            super(VehicleType.TWO_WHEELER);
+            super(Math.random()+"",VehicleType.TWO_WHEELER);
         }
     }
 

@@ -1,8 +1,10 @@
 package com.example.demo.Parkings;
 
 import com.example.demo.Vehicles.Vehicle;
+import com.example.demo.Vehicles.VehicleType;
 
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class ParkingFloor {
@@ -11,8 +13,8 @@ public class ParkingFloor {
 
     private DisplayBoard displayBoard;
 
-    private HashMap<Integer, ParkingSpot> carParkingSpotHashMap = new HashMap<>();
-    private HashMap<Integer, ParkingSpot> twoWheelerParkingSpotHashMap = new HashMap<>();
+    private ConcurrentHashMap<Integer, ParkingSpot> carParkingSpotHashMap = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<Integer, ParkingSpot> twoWheelerParkingSpotHashMap = new ConcurrentHashMap<>();
 
 
     public void addParkingSpot(ParkingSpot parkingSpot) {
@@ -36,6 +38,27 @@ public class ParkingFloor {
     public void removeVehicleFromSpot(Vehicle vehicle, ParkingSpot parkingSpot) {
 
         parkingSpot.removeVehicle();
+    }
+
+    public ParkingSpot getParkingSpot(Vehicle vehicle){
+
+        if (vehicle.getVehicleType() == VehicleType.CAR) {
+            return carParkingSpotHashMap.entrySet().stream()
+                    .filter(integerParkingSpotEntry -> integerParkingSpotEntry.getValue().getVehicle().getNumber().equals
+                            (vehicle.getNumber()))
+                    .map(integerParkingSpotEntry -> integerParkingSpotEntry.getValue())
+                    .findFirst().get();
+
+        }
+        else if (vehicle.getVehicleType() == VehicleType.TWO_WHEELER) {
+
+            return twoWheelerParkingSpotHashMap.entrySet().stream()
+                    .filter(integerParkingSpotEntry -> integerParkingSpotEntry.getValue().getVehicle().getNumber().equals
+                            (vehicle.getNumber()))
+                    .map(integerParkingSpotEntry -> integerParkingSpotEntry.getValue())
+                    .findFirst().get();
+        }
+        return null;
     }
 
 
